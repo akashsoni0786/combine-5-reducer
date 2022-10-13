@@ -6,31 +6,51 @@ const Calculations = (props) => {
   const [inp1, setInp1] = useState(0);
   const [inp2, setInp2] = useState(0);
 
+  const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const [show3, setShow3] = useState(false);
+  const [show4, setShow4] = useState(false);
 
   const add_operation = () => {
-    props.add_prop(parseInt(inp1),parseInt(inp2))
+    props.add_prop(parseInt(inp1), parseInt(inp2));
+    setShow1(true);
+    setShow2(false);
+    setShow3(false);
+    setShow4(false);
   };
 
   const minus_operation = () => {
-    props.minus_prop(parseInt(inp1),parseInt(inp2))
+    props.minus_prop(parseInt(inp1), parseInt(inp2));
+    setShow1(false);
+    setShow2(true);
+    setShow3(false);
+    setShow4(false);
   };
 
   const multiply_operation = () => {
-   props.multiply_prop(parseInt(inp1),parseInt(inp2))
+    props.multiply_prop(parseInt(inp1), parseInt(inp2));
+    setShow1(false);
+    setShow2(false);
+    setShow3(true);
+    setShow4(false);
   };
 
   const divide_operation = () => {
-   props.divide_prop(parseInt(inp1),parseInt(inp2))
+    props.divide_prop(parseInt(inp1), parseInt(inp2));
+    setShow1(false);
+    setShow2(false);
+    setShow3(false);
+    setShow4(true);
   };
 
   const clear_operation = () => {
     props.clear_prop();
-    setInp1(props.Clear.inpt1);
-    setInp2(props.Clear.inpt2);
     props.add_clear();
     props.minus_clear();
     props.multi_clear();
     props.divide_clear();
+    setInp1(props.Clear.inpt1);
+    setInp2(props.Clear.inpt2);
   };
   return (
     <div>
@@ -61,10 +81,10 @@ const Calculations = (props) => {
         </div>
       </div>
 
-      <p>Result +: {props.Plus.result_plus}</p>
-      <p>Result -: {props.Minus.result_minus}</p>
-      <p>Result *: {props.Multiply.result_multiply}</p>
-      <p>Result /: {props.Divide.result_divide}</p>
+      {show1 && <p>Result : {props.Plus.result_plus}</p>}
+      {show2 && <p>Result : {props.Minus.result_minus}</p>}
+      {show3 && <p>Result : {props.Multiply.result_multiply}</p>}
+      {show4 && <p>Result : {props.Divide.result_divide}</p>}
     </div>
   );
 };
